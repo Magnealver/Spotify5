@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Spotify</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="button_search">Search</string>
+    <string name="button_play">Play</string>
+    <string name="button_pause">Pause</string>
+    <string name="button_resume">Resume</string>
+</resources>
