@@ -150,7 +150,7 @@ public class MainActivity extends Activity implements
         Log.d("MainActivity","Resuming track");
         mPlayer.resume(null);
     }
-    //HEJ
+    //HEJ IGEN
     /*public void seekBar(View view) {
         mPlayer.getPlaybackState(long positionMs);
 
