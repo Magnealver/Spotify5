@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
@@ -36,18 +37,22 @@ public class MainActivity extends Activity implements
 
     private Player mPlayer;
 
+    ImageButton browseButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
+        browseButton = (ImageButton) findViewById(R.id.imageButtonBrowse);
+
+        /*  AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
                 REDIRECT_URI);
         builder.setScopes(new String[]{"user-read-private", "streaming"});
         AuthenticationRequest request = builder.build();
 
-        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
+        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);*/
     }
 
     @Override
