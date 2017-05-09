@@ -149,6 +149,12 @@ public class MainActivity extends Activity implements
     public void resumeSong(View view) {
         Log.d("MainActivity","Resuming track");
         mPlayer.resume(null);
+       // AuthenticationClient#clearCookies();
+    }
+
+    public void openBrowse(View view){
+        Intent browsePage = new Intent(this, BrowseActivity.class);
+        startActivity(browsePage);
     }
     //HEJ IGEN
     /*public void seekBar(View view) {
