@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class BrowseActivity extends MainActivity {
+public class MyLibraryActivity extends MainActivity {
 
     LinearLayout dynamicContent;
 
@@ -27,18 +27,18 @@ public class BrowseActivity extends MainActivity {
         //dynamically include the  current activity      layout into  baseActivity layout.now all the view of baseactivity is   accessible in current activity.
         dynamicContent = (LinearLayout)  findViewById(R.id.dynamicContent);
         //container= (ConstraintLayout) findViewById(R.id.container);
-        View wizard = getLayoutInflater().inflate(R.layout.activity_browse, null);
+        View wizard = getLayoutInflater().inflate(R.layout.activity_my_library, null);
         dynamicContent.addView(wizard);
 
 
         //get the reference of RadioGroup.
 
         RadioGroup rg=(RadioGroup)findViewById(R.id.radioGroup1);
-        RadioButton rb=(RadioButton)findViewById(R.id.radioButton_browse);
+        RadioButton rb=(RadioButton)findViewById(R.id.radioButton_mylibrary);
 
         // Change the corresponding icon and text color on nav button click.
 
-       // rb.setCompoundDrawablesWithIntrinsicBounds( 0,R.drawable.ic_matching_clicked, 0,0);
+        // rb.setCompoundDrawablesWithIntrinsicBounds( 0,R.drawable.ic_matching_clicked, 0,0);
         rb.setTextColor(Color.parseColor("#3F51B5"));
     }
 }

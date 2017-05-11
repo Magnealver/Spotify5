@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
@@ -38,6 +40,8 @@ public class MainActivity extends Activity implements
     private Player mPlayer;
 
     ImageButton browseButton;
+    RadioGroup radioGroup1;
+    RadioButton selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,56 @@ public class MainActivity extends Activity implements
 
         browseButton = (ImageButton) findViewById(R.id.imageButtonBrowse);
 
+        radioGroup1=(RadioGroup)findViewById(R.id.radioGroup1);
+        selected = (RadioButton)findViewById(R.id.radioButton_home);
+        radioGroup1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                Intent in;
+                Log.i("matching", "matching inside1 bro" + checkedId);
+                switch (checkedId)
+                {
+                    case R.id.radioButton_home:
+                        Log.i("matching", "matching inside1 matching" +  checkedId);
+                        in=new Intent(getBaseContext(),MainActivity.class);
+                        startActivity(in);
+                        overridePendingTransition(0, 0);
+                        break;
+                    case R.id.radioButton_browse:
+                        Log.i("matching", "matching inside1 watchlistAdapter" + checkedId);
+
+                        in = new Intent(getBaseContext(), BrowseActivity.class);
+                        startActivity(in);
+                        overridePendingTransition(0, 0);
+
+                        break;
+                    case R.id.radioButton_search:
+                        Log.i("matching", "matching inside1 rate" + checkedId);
+
+                        in = new Intent(getBaseContext(),SearchActivity.class);
+                        startActivity(in);
+                        overridePendingTransition(0, 0);
+                        break;
+                    case R.id.radioButton_radio:
+                        Log.i("matching", "matching inside1 listing" + checkedId);
+                        in = new Intent(getBaseContext(), RadioActivity.class);
+                        startActivity(in);
+                        overridePendingTransition(0, 0);
+                        break;
+                    case R.id.radioButton_mylibrary:
+                        Log.i("matching", "matching inside1 deals" + checkedId);
+                        in = new Intent(getBaseContext(), MyLibraryActivity.class);
+                        startActivity(in);
+                        overridePendingTransition(0, 0);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        //kod för inloggning via Spotifys api
         /*  AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
                 REDIRECT_URI);
