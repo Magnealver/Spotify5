@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroller"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context="leguin.spotify.HomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Browse"
+            android:layout_weight="1.0"
+            android:layout_marginRight="34dp"
+            android:layout_marginEnd="34dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/textView6"
+            android:layout_toStartOf="@+id/textView6"
+            android:layout_marginTop="34dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="164dp"
+            android:text="TextView"
+            android:layout_weight="1.0"
+            android:layout_above="@+id/button2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="93dp"
+            android:layout_marginEnd="93dp" />
+    </RelativeLayout>
+</ScrollView>

@@ -15,27 +15,27 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
-public class MyLibraryActivity extends MainActivity {
+public class HomeActivity extends MainActivity {
 
     ConstraintLayout dynamicContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_matching);
+        //setContentView(R.layout.activity_main);
 
 
         //dynamically include the  current activity      layout into  baseActivity layout.now all the view of baseactivity is   accessible in current activity.
         dynamicContent = (ConstraintLayout)  findViewById(R.id.dynamicContent);
         //container= (ConstraintLayout) findViewById(R.id.container);
-        View wizard = getLayoutInflater().inflate(R.layout.activity_my_library, null);
+        View wizard = getLayoutInflater().inflate(R.layout.activity_home, null);
         dynamicContent.addView(wizard);
 
 
         //get the reference of RadioGroup.
 
         RadioGroup rg=(RadioGroup)findViewById(R.id.radioGroup1);
-        RadioButton rb=(RadioButton)findViewById(R.id.radioButton_mylibrary);
+        RadioButton rb=(RadioButton)findViewById(R.id.radioButton_home);
 
         // Change the corresponding icon and text color on nav button click.
 

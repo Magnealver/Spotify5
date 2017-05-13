@@ -33,7 +33,9 @@
         <activity android:name=".BrowseActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".RadioActivity" />
-        <activity android:name=".MyLibraryActivity"></activity>
+        <activity android:name=".MyLibraryActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

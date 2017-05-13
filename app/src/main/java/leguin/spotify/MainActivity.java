@@ -39,20 +39,19 @@ public class MainActivity extends Activity implements
 
     private Player mPlayer;
 
-    ImageButton browseButton;
     RadioGroup radioGroup1;
-    RadioButton selected;
+    //RadioButton selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        browseButton = (ImageButton) findViewById(R.id.imageButtonBrowse);
-
         radioGroup1=(RadioGroup)findViewById(R.id.radioGroup1);
-        selected = (RadioButton)findViewById(R.id.radioButton_home);
+       // selected = (RadioButton)findViewById(R.id.radioButton_home);
+        //radioGroup1.check(R.id.radioButton_home);
         radioGroup1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+
         {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId)
@@ -63,14 +62,14 @@ public class MainActivity extends Activity implements
                 {
                     case R.id.radioButton_home:
                         Log.i("matching", "matching inside1 matching" +  checkedId);
-                        in=new Intent(getBaseContext(),MainActivity.class);
+                        in=new Intent(getBaseContext(),HomeActivity.class);
                         startActivity(in);
                         overridePendingTransition(0, 0);
                         break;
                     case R.id.radioButton_browse:
                         Log.i("matching", "matching inside1 watchlistAdapter" + checkedId);
 
-                        in = new Intent(getBaseContext(), BrowseActivity.class);
+                        in = new Intent(getBaseContext(),BrowseActivity.class);
                         startActivity(in);
                         overridePendingTransition(0, 0);
 
@@ -186,7 +185,7 @@ public class MainActivity extends Activity implements
     public void onConnectionMessage(String message) {
         Log.d("MainActivity", "Received connection message: " + message);
     }
-
+/*
     public void sendMessage(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.editText);
@@ -210,17 +209,5 @@ public class MainActivity extends Activity implements
         mPlayer.resume(null);
        // AuthenticationClient#clearCookies();
     }
-
-    public void openBrowse(View view){
-        Intent browsePage = new Intent(this, BrowseActivity.class);
-        startActivity(browsePage);
-    }
-    //HEJ IGEN
-    /*public void seekBar(View view) {
-        mPlayer.getPlaybackState(long positionMs);
-
-    }*/
-
-    //YTTERLIGARE ÄNDRINGAR TJOHJOOOO
-    // ännu mer ändringar
+*/
 }

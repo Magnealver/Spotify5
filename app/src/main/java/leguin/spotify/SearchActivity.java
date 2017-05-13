@@ -13,10 +13,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 public class SearchActivity extends MainActivity {
 
-    LinearLayout dynamicContent;
+    ConstraintLayout dynamicContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class SearchActivity extends MainActivity {
 
 
         //dynamically include the  current activity      layout into  baseActivity layout.now all the view of baseactivity is   accessible in current activity.
-        dynamicContent = (LinearLayout)  findViewById(R.id.dynamicContent);
+        dynamicContent = (ConstraintLayout)  findViewById(R.id.dynamicContent);
         //container= (ConstraintLayout) findViewById(R.id.container);
         View wizard = getLayoutInflater().inflate(R.layout.activity_search, null);
         dynamicContent.addView(wizard);
