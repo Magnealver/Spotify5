@@ -23,6 +23,10 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
+import kaaes.spotify.webapi.android.*;
+import retrofit.Callback;
+import retrofit.http.GET;
+
 public class MainActivity extends Activity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
@@ -41,6 +45,27 @@ public class MainActivity extends Activity implements
 
     RadioGroup radioGroup1;
     //RadioButton selected;
+
+  /*  SpotifyApi api = new SpotifyApi();
+
+    // Most (but not all) of the Spotify Web API endpoints require authorisation.
+// If you know you'll only use the ones that don't require authorisation you can skip this step
+    api.setAccessToken("myAccessToken");
+
+    SpotifyService spotify = api.getService();
+
+    spotify.getAlbum("2dIGnmEIy1WZIcZCFSj6i8", new Callback<Album>() {
+        @Override
+        public void success(Album album, Response response) {
+            Log.d("Album success", album.name);
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            Log.d("Album failure", error.toString());
+        }
+})*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
