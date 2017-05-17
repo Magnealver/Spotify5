@@ -227,7 +227,7 @@ public class MainActivity extends Activity implements
      * are made with the .get method. This holds for all type of requests. */
         final SettableFuture<AuthorizationCodeCredentials> authorizationCodeCredentialsFuture = api.authorizationCodeGrant(code).build().getAsync();
 
-/* Add callbacks to handle success and failure */
+    /* Add callbacks to handle success and failure */
         Futures.addCallback(authorizationCodeCredentialsFuture, new FutureCallback<AuthorizationCodeCredentials>() {
             @Override
             public void onSuccess(AuthorizationCodeCredentials authorizationCodeCredentials) {
