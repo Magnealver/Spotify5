@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.SettableFuture;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
@@ -21,17 +19,21 @@ import com.spotify.sdk.android.player.Player;
 import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
-import com.wrapper.spotify.Api;
-import com.wrapper.spotify.models.AuthorizationCodeCredentials;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import java.util.concurrent.TimeUnit;
+
+import kaaes.spotify.webapi.android.SpotifyApi;
+import kaaes.spotify.webapi.android.SpotifyCallback;
+import kaaes.spotify.webapi.android.SpotifyError;
+import kaaes.spotify.webapi.android.SpotifyService;
+import kaaes.spotify.webapi.android.models.UserPrivate;
+import retrofit.client.Response;
 
 public class MainActivity extends Activity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
+    private static final String TAG = MainActivity.class.getSimpleName();
+
 
     // TODO: Replace with your client ID
     private static final String CLIENT_ID = "7ec97bdbb2434a779d97545c67cacbba";
@@ -108,16 +110,16 @@ public class MainActivity extends Activity implements
             }
         });
         //kod för inloggning via Spotifys api
-        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
+        /*AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
                 REDIRECT_URI);
         builder.setScopes(new String[]{"user-read-private", "streaming"});
         AuthenticationRequest request = builder.build();
 
-        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
+        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);*/
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
@@ -141,7 +143,7 @@ public class MainActivity extends Activity implements
                 });
             }
         }
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
@@ -196,58 +198,73 @@ public class MainActivity extends Activity implements
     }
 
     public void apiTest(View view) {
-
-        final Api api = Api.builder()
-                .clientId(CLIENT_ID)
-                .clientSecret(CLIENT_SECRET)
-                .redirectURI(REDIRECT_URI)
+        final AuthenticationRequest request = new AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI)
+                .setScopes(new String[]{"playlist-read", "user-read-private", "user-read-email", "playlist-read-private", "playlist-modify-private", "user-library-read" })
                 .build();
 
-/* Set the necessary scopes that the application will need from the user */
-        final List<String> scopes = Arrays.asList("user-read-private", "user-read-email", "playlist-read-private", "playlist-modify-private", "user-library-read");
-
-/* Set a state. This is used to prevent cross site request forgeries. */
-        final String state = "leguinhype";
-
-        String authorizeURL = api.createAuthorizeURL(scopes, state);
-
-/* Continue by sending the user to the authorizeURL, which will look something like
-   https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
- */
-        goToUrl(authorizeURL);
+        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
 
 
-    /* Application details necessary to get an access token */
-        Pattern pattern = Pattern.compile("(?<=code=)(.*)(?=&)");
-        Matcher matcher = pattern.matcher(authorizeURL);
+    }
 
-        final String code = "test";//matcher.group(1);
+    public void apiTest2(View view) {
+        SpotifyService test;
+        SpotifyApi test2 = new SpotifyApi();
 
-    /* Make a token request. Asynchronous requests are made with the .getAsync method and synchronous requests
-     * are made with the .get method. This holds for all type of requests. */
-        final SettableFuture<AuthorizationCodeCredentials> authorizationCodeCredentialsFuture = api.authorizationCodeGrant(code).build().getAsync();
+        test2.setAccessToken(CredentialsHandler.getToken(this));
 
-    /* Add callbacks to handle success and failure */
-        Futures.addCallback(authorizationCodeCredentialsFuture, new FutureCallback<AuthorizationCodeCredentials>() {
+        test = test2.getService();
+
+        test.getMe(new SpotifyCallback<UserPrivate>() {
             @Override
-            public void onSuccess(AuthorizationCodeCredentials authorizationCodeCredentials) {
-    /* The tokens were retrieved successfully! */
-                System.out.println("Successfully retrieved an access token! " + authorizationCodeCredentials.getAccessToken());
-                System.out.println("The access token expires in " + authorizationCodeCredentials.getExpiresIn() + " seconds");
-                System.out.println("Luckily, I can refresh it using this refresh token! " + authorizationCodeCredentials.getRefreshToken());
-
-    /* Set the access token and refresh token so that they are used whenever needed */
-                api.setAccessToken(authorizationCodeCredentials.getAccessToken());
-                api.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
+            public void failure(SpotifyError spotifyError) {
+                logError("Feelsbadman");
             }
 
             @Override
-            public void onFailure(Throwable throwable) {
-    /* Let's say that the client id is invalid, or the code has been used more than once,
-     * the request will fail. Why it fails is written in the throwable's message. */
-                System.out.println("idk what the fuk went wrong ok" + throwable.getMessage());
+            public void success(UserPrivate userPrivate, Response response) {
+                logMessage("Feelsgoodman");
+                logMessage(userPrivate.id);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        // Check if result comes from the correct activity
+        if (requestCode == REQUEST_CODE) {
+            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+            switch (response.getType()) {
+                // Response was successful and contains auth token
+                case TOKEN:
+                    logMessage("Got token: " + response.getAccessToken());
+                    CredentialsHandler.setToken(this, response.getAccessToken(), response.getExpiresIn(), TimeUnit.SECONDS);
+                    logMessage("");
+                    //startMainActivity(response.getAccessToken());
+                    break;
+
+                // Auth flow returned an error
+                case ERROR:
+                    logError("Auth error: " + response.getError());
+                    break;
+
+                // Most likely auth flow was cancelled
+                default:
+                    logError("Auth result: " + response.getType());
+            }
+        }
+    }
+
+    private void logError(String msg) {
+        Toast.makeText(this, "Error: " + msg, Toast.LENGTH_SHORT).show();
+        Log.e(TAG, msg);
+    }
+
+    private void logMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Log.d(TAG, msg);
     }
 
     private void goToUrl (String url) {
