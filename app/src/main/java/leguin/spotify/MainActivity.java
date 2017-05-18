@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements
                         if (menuItemId == R.id.item_home){
                             HomeFragment f = new HomeFragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.frame,f).commit();
-
                         }
                         if (menuItemId == R.id.item_browse){
                             BrowseFragment f = new BrowseFragment();
