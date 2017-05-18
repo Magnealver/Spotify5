@@ -5,6 +5,7 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 
 import com.roughike.bottombar.BottomBar;
@@ -39,12 +40,17 @@ public class MainActivity extends AppCompatActivity implements
     //RadioButton selected;
 
     BottomBar mBottomBar;
+    ImageButton playpause;
+    boolean isPlaying = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        playpause= (ImageButton)findViewById(R.id.button12);
+        playpause.setOnClickListener(imgButtonHandler);
 
         mBottomBar = BottomBar.attach(this,savedInstanceState);
         mBottomBar.setItemsFromMenu(R.menu.menu_main, new OnMenuTabClickListener() {
@@ -84,6 +90,18 @@ public class MainActivity extends AppCompatActivity implements
         mBottomBar.mapColorForTab(3,"#222326");
         mBottomBar.mapColorForTab(4,"#222326");
     }
+
+    View.OnClickListener imgButtonHandler = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            if (isPlaying) {
+                playpause.setImageResource(R.drawable.pause);
+            } else {
+                playpause.setImageResource(R.drawable.play);
+            }
+            isPlaying = !isPlaying;
+        }
+    };
 
     @Override
     protected void onDestroy() {
