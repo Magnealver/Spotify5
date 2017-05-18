@@ -10,8 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
+import android.widget.Toast;
 
 
 /**
@@ -27,5 +26,9 @@ public class MyLibraryFragment extends Fragment {
                              @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.mylibrary,container,false);
         return view;
+    }
+
+    public void underConstruction (View view) {
+        Toast.makeText(getActivity(),"UNDER CONSTRUCTION!",Toast.LENGTH_SHORT).show();
     }
 }
