@@ -5,8 +5,13 @@
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="android:colorBackground">@color/spotifyBG</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="android:editTextColor">@android:color/white</item>
 
+    </style>
 
+    <style name="SearchTheme" parent="Base.Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/searchicon</item>
     </style>
 
 </resources>

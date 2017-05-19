@@ -5,17 +5,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.SearchView
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/spotifyGray"
-        android:text="Search"
-        />
 
-    <TextView
+    <SearchView
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Search fragment"
-        android:textSize="36sp"/>
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/search_hint"
+        style="@style/SearchTheme"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_results"
+        android:layout_width="match_parent"
+        android:layout_height="366dp"
+        android:textColor="@color/white"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

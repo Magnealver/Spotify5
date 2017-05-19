@@ -12,11 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
-/**
- * Created by Alexanders on 2017-05-14.
- */
-
 public class MyLibraryFragment extends Fragment {
 
     @Nullable

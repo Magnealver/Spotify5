@@ -63,22 +63,31 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:baselineAlignBottom="@+id/button5"
             android:cropToPadding="false"
+            android:gravity="left|center_vertical"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/dailymix" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
             android:onClick="underConstruction"
-            android:paddingLeft="15dp"
+            android:paddingLeft="5dp"
             android:text="My Daily Mix"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.05" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -88,8 +97,8 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
             android:adjustViewBounds="false"
             android:cropToPadding="false"
             app:srcCompat="@drawable/playlists" />
@@ -97,13 +106,18 @@
         <Button
             android:id="@+id/button6"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
-            android:paddingLeft="15dp"
+            android:paddingLeft="5dp"
             android:text="Playlists"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.05" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -113,21 +127,26 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
             android:cropToPadding="false"
             app:srcCompat="@drawable/stations2" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
-            android:paddingLeft="15dp"
+            android:paddingLeft="5dp"
             android:text="Stations"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.05" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -137,21 +156,26 @@
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
             android:cropToPadding="false"
             app:srcCompat="@drawable/artists" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
-            android:paddingLeft="15dp"
+            android:paddingLeft="5dp"
             android:text="Artists"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.05" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -161,21 +185,26 @@
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
             android:cropToPadding="false"
             app:srcCompat="@drawable/albums" />
 
         <Button
             android:id="@+id/button9"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
-            android:paddingLeft="15dp"
+            android:paddingLeft="5dp"
             android:text="Albums"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.05" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -185,21 +214,26 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
             android:cropToPadding="false"
             app:srcCompat="@drawable/songs" />
 
         <Button
             android:id="@+id/button26"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
-            android:paddingLeft="15dp"
+            android:paddingLeft="5dp"
             android:text="Songs"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.05" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -209,18 +243,18 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
             android:cropToPadding="false"
             app:srcCompat="@drawable/podcasts" />
 
         <Button
             android:id="@+id/button10"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
-            android:paddingLeft="15dp"
+            android:paddingLeft="5dp"
             android:text="Podcasts &amp; Videos"
             android:textColor="@color/white" />
     </LinearLayout>
