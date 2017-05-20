@@ -27,7 +27,6 @@ public class MyPlaylistsFragment extends Fragment {
 
     private String accessToken;
     private LinearLayout layout;
-    public final ImageView image;
 
     @Nullable
     @Override
@@ -69,7 +68,6 @@ public class MyPlaylistsFragment extends Fragment {
                     //Drawable drawable = new BitmapDrawable(getResources(), bitmap);
 
                     // Add Buttons
-                    image = (ImageView) view.findViewById(R.id.entity_image);
                     Button button = new Button(getContext());
                     button.setText(item.name);
                     button.getBackground().setAlpha(0);
