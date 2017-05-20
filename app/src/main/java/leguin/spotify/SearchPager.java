@@ -25,7 +25,6 @@ public class SearchPager {
     private String mCurrentQuery;
 
     public interface CompleteListener {
-        void onCompleteArtists(List<Artist> items);
         void onCompleteTracks(List<Track> items);
         void onError(Throwable error);
     }
@@ -51,18 +50,6 @@ public class SearchPager {
         Map<String, Object> options = new HashMap<>();
         options.put(SpotifyService.OFFSET, offset);
         options.put(SpotifyService.LIMIT, limit);
-
-        mSpotifyApi.searchArtists(query, options, new SpotifyCallback<ArtistsPager>() {
-            @Override
-            public void success(ArtistsPager artistsPager, Response response) {
-                listener.onCompleteArtists(artistsPager.artists.items);
-            }
-
-            @Override
-            public void failure(SpotifyError error) {
-                listener.onError(error);
-            }
-        });
 
         mSpotifyApi.searchTracks(query, options, new SpotifyCallback<TracksPager>() {
             @Override

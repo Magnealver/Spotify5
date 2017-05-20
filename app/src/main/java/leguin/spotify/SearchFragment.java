@@ -63,11 +63,6 @@ public class SearchFragment extends Fragment implements Search.View {
             public void onItemSelected(View itemView, Track item) {
                 mActionListener.selectTrack(item);
             }
-            @Override
-            public void onItemSelectedA(View itemView, Artist item) {
-                mActionListener.selectArtist(item);
-            }
-
         });
 
         RecyclerView resultsList = (RecyclerView) view.findViewById(R.id.search_results);
@@ -120,11 +115,6 @@ public class SearchFragment extends Fragment implements Search.View {
     @Override
     public void addData(List<Track> items) {
         mAdapter.addData(items);
-    }
-
-
-    public void addDataA(List<Artist> items) {
-        mAdapter.addDataA(items);
     }
 
     @Override

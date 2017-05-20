@@ -27,7 +27,6 @@ import kaaes.spotify.webapi.android.models.Track;
 public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdapter.ViewHolder> {
 
     private final List<Track> mItems = new ArrayList<>();
-    private final List<Artist> mItemsA = new ArrayList<>();
     private final Context mContext;
     private final ItemSelectedListener mListener;
 
@@ -49,13 +48,11 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         public void onClick(View v) {
             notifyItemChanged(getLayoutPosition());
             mListener.onItemSelected(v, mItems.get(getAdapterPosition()));
-            mListener.onItemSelectedA(v, mItemsA.get(getAdapterPosition()));
         }
     }
 
     public interface ItemSelectedListener {
         void onItemSelected(View itemView, Track item);
-        void onItemSelectedA(View itemView, Artist item);
     }
 
     public SearchResultsAdapter(Context context, ItemSelectedListener listener) {
@@ -69,11 +66,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
     public void addData(List<Track> items) {
         mItems.addAll(items);
-        notifyDataSetChanged();
-    }
-
-    public void addDataA(List<Artist> items) {
-        mItemsA.addAll(items);
         notifyDataSetChanged();
     }
 

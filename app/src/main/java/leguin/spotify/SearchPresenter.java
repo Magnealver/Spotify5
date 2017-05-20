@@ -76,12 +76,6 @@ public class SearchPresenter implements Search.ActionListener {
             mView.reset();
             mSearchListener = new SearchPager.CompleteListener() {
                 @Override
-                public void onCompleteArtists(List<Artist> items) {
-                    mView.addDataA(items);
-                    logMessage("ARTIST ADDED YEY");
-                }
-
-                @Override
                 public void onCompleteTracks(List<Track> items) {
                     mView.addData(items);
                 }
@@ -142,28 +136,6 @@ public class SearchPresenter implements Search.ActionListener {
         } else {
             mPlayer.resume();
         }
-    }
-
-    @Override
-    public void selectArtist(Artist item) {
-       /* String previewUrl = item.preview_url;
-
-        if (previewUrl == null) {
-            logMessage("Track doesn't have a preview");
-            return;
-        }
-
-        if (mPlayer == null) return;
-
-        String currentTrackUrl = mPlayer.getCurrentTrack();
-
-        if (currentTrackUrl == null || !currentTrackUrl.equals(previewUrl)) {
-            mPlayer.play(previewUrl);
-        } else if (mPlayer.isPlaying()) {
-            mPlayer.pause();
-        } else {
-            mPlayer.resume();
-        }*/
     }
 
     private void logError(String msg) {
