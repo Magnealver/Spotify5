@@ -18,9 +18,12 @@ import android.widget.SearchView;
 
 import java.util.List;
 
+import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.Track;
 
 public class SearchFragment extends Fragment implements Search.View {
+
+    private String accessToken;
 
     @Nullable
     @Override
@@ -31,6 +34,8 @@ public class SearchFragment extends Fragment implements Search.View {
 
         Intent intent = getActivity().getIntent();
         String token = intent.getStringExtra(EXTRA_TOKEN);
+
+        accessToken = CredentialsHandler.getToken(view.getContext());
 
         mActionListener = new SearchPresenter(getActivity(), this);
         mActionListener.init(token);
@@ -58,6 +63,11 @@ public class SearchFragment extends Fragment implements Search.View {
             public void onItemSelected(View itemView, Track item) {
                 mActionListener.selectTrack(item);
             }
+            @Override
+            public void onItemSelectedA(View itemView, Artist item) {
+                mActionListener.selectArtist(item);
+            }
+
         });
 
         RecyclerView resultsList = (RecyclerView) view.findViewById(R.id.search_results);
@@ -112,25 +122,36 @@ public class SearchFragment extends Fragment implements Search.View {
         mAdapter.addData(items);
     }
 
-    /*@Override
-    protected void onPause() {
+
+    public void addDataA(List<Artist> items) {
+        mAdapter.addDataA(items);
+    }
+
+    @Override
+    public void onPause() {
         super.onPause();
         mActionListener.pause();
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mActionListener.resume();
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (mActionListener.getCurrentQuery() != null) {
             outState.putString(KEY_CURRENT_QUERY, mActionListener.getCurrentQuery());
         }
-    }*/
+    }
+
+    @Override
+    public void onDestroy() {
+        mActionListener.destroy();
+        super.onDestroy();
+    }
 
 }
 

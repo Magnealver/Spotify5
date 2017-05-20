@@ -6,6 +6,7 @@ package leguin.spotify;
 
 import java.util.List;
 
+import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.Track;
 
 public class Search {
@@ -14,6 +15,8 @@ public class Search {
         void reset();
 
         void addData(List<Track> items);
+
+        void addDataA(List<Artist> items);
     }
 
     public interface ActionListener {
@@ -27,6 +30,8 @@ public class Search {
         void loadMoreResults();
 
         void selectTrack(Track item);
+
+        void selectArtist(Artist item);
 
         void resume();
 

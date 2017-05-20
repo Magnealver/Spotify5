@@ -12,6 +12,9 @@
 
     <style name="SearchTheme" parent="Base.Widget.AppCompat.SearchView">
         <item name="searchIcon">@drawable/searchicon</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="android:editTextColor">@android:color/white</item>
+
     </style>
 
 </resources>

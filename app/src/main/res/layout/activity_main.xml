@@ -47,19 +47,20 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:gravity="center|center_vertical"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/play" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
             android:layout_weight="0"
             android:gravity="center_vertical|center_horizontal"
             android:text="SONG + ARTIST"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <ImageButton
             android:id="@+id/button14"

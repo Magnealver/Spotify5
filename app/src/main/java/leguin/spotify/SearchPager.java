@@ -11,8 +11,10 @@ import java.util.Map;
 import kaaes.spotify.webapi.android.SpotifyCallback;
 import kaaes.spotify.webapi.android.SpotifyError;
 import kaaes.spotify.webapi.android.SpotifyService;
+import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.Track;
 import kaaes.spotify.webapi.android.models.TracksPager;
+import kaaes.spotify.webapi.android.models.ArtistsPager;
 import retrofit.client.Response;
 
 public class SearchPager {
@@ -23,7 +25,8 @@ public class SearchPager {
     private String mCurrentQuery;
 
     public interface CompleteListener {
-        void onComplete(List<Track> items);
+        void onCompleteArtists(List<Artist> items);
+        void onCompleteTracks(List<Track> items);
         void onError(Throwable error);
     }
 
@@ -49,10 +52,10 @@ public class SearchPager {
         options.put(SpotifyService.OFFSET, offset);
         options.put(SpotifyService.LIMIT, limit);
 
-        mSpotifyApi.searchTracks(query, options, new SpotifyCallback<TracksPager>() {
+        mSpotifyApi.searchArtists(query, options, new SpotifyCallback<ArtistsPager>() {
             @Override
-            public void success(TracksPager tracksPager, Response response) {
-                listener.onComplete(tracksPager.tracks.items);
+            public void success(ArtistsPager artistsPager, Response response) {
+                listener.onCompleteArtists(artistsPager.artists.items);
             }
 
             @Override
@@ -60,6 +63,19 @@ public class SearchPager {
                 listener.onError(error);
             }
         });
+
+        mSpotifyApi.searchTracks(query, options, new SpotifyCallback<TracksPager>() {
+            @Override
+            public void success(TracksPager tracksPager, Response response) {
+                listener.onCompleteTracks(tracksPager.tracks.items);
+            }
+
+            @Override
+            public void failure(SpotifyError error) {
+                listener.onError(error);
+            }
+        });
+
     }
 }
 

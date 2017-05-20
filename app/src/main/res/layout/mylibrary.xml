@@ -73,7 +73,7 @@
             app:srcCompat="@drawable/dailymix" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/Kappa"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
@@ -110,7 +110,7 @@
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
             android:paddingLeft="5dp"
-            android:text="Playlists"
+            android:text="My Playlists"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -133,13 +133,13 @@
             app:srcCompat="@drawable/stations2" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/Kappa2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
             android:paddingLeft="5dp"
-            android:text="Stations"
+            android:text="My Stations"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -162,42 +162,13 @@
             app:srcCompat="@drawable/artists" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/Kappa3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
             android:paddingLeft="5dp"
-            android:text="Artists"
-            android:textColor="@color/white" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="0.05" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="50dp"
-            android:layout_height="25dp"
-            android:cropToPadding="false"
-            app:srcCompat="@drawable/albums" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="5dp"
-            android:text="Albums"
+            android:text="My Artists"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -220,13 +191,13 @@
             app:srcCompat="@drawable/songs" />
 
         <Button
-            android:id="@+id/button26"
+            android:id="@+id/Kappa5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
             android:paddingLeft="5dp"
-            android:text="Songs"
+            android:text="My Songs"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -249,13 +220,13 @@
             app:srcCompat="@drawable/podcasts" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/Kappa6"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="left|center_vertical"
             android:paddingLeft="5dp"
-            android:text="Podcasts &amp; Videos"
+            android:text="My Podcasts &amp; Videos"
             android:textColor="@color/white" />
     </LinearLayout>
 

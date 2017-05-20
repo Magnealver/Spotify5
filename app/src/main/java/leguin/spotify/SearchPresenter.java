@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
+import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.Track;
 
 public class SearchPresenter implements Search.ActionListener {
@@ -75,10 +76,15 @@ public class SearchPresenter implements Search.ActionListener {
             mView.reset();
             mSearchListener = new SearchPager.CompleteListener() {
                 @Override
-                public void onComplete(List<Track> items) {
-                    mView.addData(items);
+                public void onCompleteArtists(List<Artist> items) {
+                    mView.addDataA(items);
+                    logMessage("ARTIST ADDED YEY");
                 }
 
+                @Override
+                public void onCompleteTracks(List<Track> items) {
+                    mView.addData(items);
+                }
                 @Override
                 public void onError(Throwable error) {
                     logError(error.getMessage());
@@ -136,6 +142,28 @@ public class SearchPresenter implements Search.ActionListener {
         } else {
             mPlayer.resume();
         }
+    }
+
+    @Override
+    public void selectArtist(Artist item) {
+       /* String previewUrl = item.preview_url;
+
+        if (previewUrl == null) {
+            logMessage("Track doesn't have a preview");
+            return;
+        }
+
+        if (mPlayer == null) return;
+
+        String currentTrackUrl = mPlayer.getCurrentTrack();
+
+        if (currentTrackUrl == null || !currentTrackUrl.equals(previewUrl)) {
+            mPlayer.play(previewUrl);
+        } else if (mPlayer.isPlaying()) {
+            mPlayer.pause();
+        } else {
+            mPlayer.resume();
+        }*/
     }
 
     private void logError(String msg) {

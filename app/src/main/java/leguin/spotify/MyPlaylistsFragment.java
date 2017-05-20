@@ -1,9 +1,6 @@
 package leguin.spotify;
 
-/**
- * Created by Alexanders on 2017-05-14.
- */
-
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
@@ -21,27 +19,27 @@ import kaaes.spotify.webapi.android.models.Pager;
 import kaaes.spotify.webapi.android.models.PlaylistSimple;
 import retrofit.client.Response;
 
-
 /**
- * Created by Alexanders on 2017-05-14.
+ * Created by Magne on 5/20/2017.
  */
 
-public class BrowseFragment extends Fragment {
+public class MyPlaylistsFragment extends Fragment {
 
     private String accessToken;
     private LinearLayout layout;
+    public final ImageView image;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.browse,container,false);
+        View view = inflater.inflate(R.layout.myplaylists,container,false);
 
         accessToken = CredentialsHandler.getToken(view.getContext());
 
         /////
-        layout = (LinearLayout) view.findViewById(R.id.made_for_you);
+        layout = (LinearLayout) view.findViewById(R.id.MyPlaylists);
 
         populateScrollView();
 
@@ -71,8 +69,11 @@ public class BrowseFragment extends Fragment {
                     //Drawable drawable = new BitmapDrawable(getResources(), bitmap);
 
                     // Add Buttons
+                    image = (ImageView) view.findViewById(R.id.entity_image);
                     Button button = new Button(getContext());
                     button.setText(item.name);
+                    button.getBackground().setAlpha(0);
+                    button.setTextColor(Color.WHITE);
                     //button.setCompoundDrawables(null, drawable, null, null);
                     layout.addView(button);
                 }

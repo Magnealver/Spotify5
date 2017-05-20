@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
@@ -44,12 +46,52 @@ public class MainActivity extends AppCompatActivity implements
 
     private Player mPlayer;
 
-    RadioGroup radioGroup1;
-    //RadioButton selected;
-
     BottomBar mBottomBar;
     ImageButton playpause;
     boolean isPlaying = false;
+
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+
+                if (Math.abs(deltaX) > MIN_DISTANCE)
+                {
+                    // Left to Right swipe action
+                    if (x2 > x1)
+                    {
+                        Toast.makeText(this, "Left to Right swipe [Previous]", Toast.LENGTH_SHORT).show ();
+                       // TODO: Create Previous Song method
+                       // PreviousSong();
+                    }
+
+                    // Right to left swipe action
+                    else
+                    {
+                        Toast.makeText(this, "Right to Left swipe [Next]", Toast.LENGTH_SHORT).show ();
+                        // TODO: Create Next Song method
+                        // NextSong();
+                    }
+
+                }
+                else
+                {
+                    // consider as something else - a screen tap for example
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
 
 
     @Override
@@ -104,8 +146,10 @@ public class MainActivity extends AppCompatActivity implements
         public void onClick(View v) {
             if (isPlaying) {
                 playpause.setImageResource(R.drawable.pause);
+                //TODO: Pause current song
             } else {
                 playpause.setImageResource(R.drawable.play);
+                //TODO: Play current song
             }
             isPlaying = !isPlaying;
         }

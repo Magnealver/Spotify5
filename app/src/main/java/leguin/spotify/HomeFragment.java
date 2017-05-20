@@ -6,7 +6,11 @@ package leguin.spotify;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,14 +20,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyCallback;
 import kaaes.spotify.webapi.android.SpotifyError;
 import kaaes.spotify.webapi.android.SpotifyService;
+import kaaes.spotify.webapi.android.models.Image;
 import kaaes.spotify.webapi.android.models.Pager;
 import kaaes.spotify.webapi.android.models.PlaylistSimple;
 import retrofit.client.Response;
@@ -38,6 +45,8 @@ public class HomeFragment extends Fragment {
     private LinearLayout layout;
 
     private String accessToken;
+
+    public ImageView image;
 
     private OnFragmentInteractionListener mListener;
 
@@ -78,9 +87,19 @@ public class HomeFragment extends Fragment {
             @Override
             public void success(Pager<PlaylistSimple> playlistSimplePager, Response response) {
                 for (PlaylistSimple item : playlistSimplePager.items) {
+
+                    String url = "";
+                    int smallestWidth = 0;
+                    int smallestHeight = 0;
+
+                    //Bitmap bitmap = Utils.getBitmapFromURL(url);
+
+                    //Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+
                     // Add Buttons
                     Button button = new Button(getContext());
                     button.setText(item.name);
+                    //button.setCompoundDrawables(null, drawable, null, null);
                     layout.addView(button);
                 }
             }
@@ -101,6 +120,7 @@ public class HomeFragment extends Fragment {
 
         accessToken = CredentialsHandler.getToken(view.getContext());
 
+        /////
         layout = (LinearLayout) view.findViewById(R.id.made_for_you);
 
         populateScrollView();
