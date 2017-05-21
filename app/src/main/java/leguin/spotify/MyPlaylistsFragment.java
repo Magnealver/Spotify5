@@ -43,7 +43,6 @@ public class MyPlaylistsFragment extends Fragment {
         accessToken = CredentialsHandler.getToken(view.getContext());
 
         layout = (LinearLayout) view.findViewById(R.id.MyPlaylists);
-        //layoutHorizontal = (LinearLayout) view.findViewById(R.id.MyPlaylistsHorizontal);
 
         populateScrollView();
 
@@ -92,9 +91,6 @@ public class MyPlaylistsFragment extends Fragment {
                         }
                     });
                     layout.addView(image);
-                    //layoutHorizontal.addView(image);
-
-                    //layout.addView(layoutHorizontal);
                 }
             }
 

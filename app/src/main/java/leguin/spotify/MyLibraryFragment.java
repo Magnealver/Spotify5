@@ -50,8 +50,6 @@ public class MyLibraryFragment extends Fragment {
             }
         });
 
-
-
         Kappa2.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {Toast.makeText(getContext(), "My Stations are currently unavailable!", Toast.LENGTH_SHORT).show();}
         });
         Kappa3.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {Toast.makeText(getContext(), "My Artists are currently unavailable!", Toast.LENGTH_SHORT).show();}
@@ -74,10 +72,5 @@ public class MyLibraryFragment extends Fragment {
         });
 
         return view;
-    }
-
-
-    public void underConstruction (View view) {
-        Toast.makeText(getActivity(),"UNDER CONSTRUCTION!",Toast.LENGTH_SHORT).show();
     }
 }

@@ -33,12 +33,10 @@ import retrofit.client.Response;
 public class BrowseFragment extends Fragment {
 
     private String accessToken;
-    //private RelativeLayout layout;
     private LinearLayout layout;
     private Button Kappa;//TODO: change name, Kappa
     private Button Kappa2;
     private Button Kappa3;
-    private Button Kappa4;
     private Button Kappa5;
     private Button Kappa6;
     private Button NewReleases;
@@ -56,9 +54,6 @@ public class BrowseFragment extends Fragment {
         layout = (LinearLayout) view.findViewById(R.id.featured_content);
 
         populateScrollView();
-
-        //layout = (RelativeLayout) view.findViewById(R.id.item_browse);
-
 
         Kappa2 = (Button) view.findViewById(R.id.Kappa2);
         Kappa3 = (Button) view.findViewById(R.id.Kappa3);
