@@ -92,7 +92,6 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:gravity="left|center_vertical"
-                    android:onClick="underConstruction"
                     android:paddingLeft="5dp"
                     android:text="My Daily Mix"
                     android:textColor="@color/white" />

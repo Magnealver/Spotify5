@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class MyLibraryFragment extends Fragment {
     private Button Kappa5;
     private Button Kappa6;
     private Button MyPlaylists;
+    private ImageButton Settings;
 
     @Nullable
     @Override
@@ -39,6 +41,7 @@ public class MyLibraryFragment extends Fragment {
         Kappa5 = (Button) view.findViewById(R.id.Kappa5);
         Kappa6 = (Button) view.findViewById(R.id.Kappa6);
         MyPlaylists = (Button) view.findViewById(R.id.button6);
+        Settings = (ImageButton) view.findViewById(R.id.imageButton2);
 
         Kappa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +63,12 @@ public class MyLibraryFragment extends Fragment {
 
         MyPlaylists.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {
             MyPlaylistsFragment f = new MyPlaylistsFragment();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame,f).commit();
+        }
+        });
+
+        Settings.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {
+            SettingsFragment f = new SettingsFragment();
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame,f).commit();
         }
         });
