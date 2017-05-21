@@ -12,12 +12,12 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
-import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.Track;
 
 public class SearchPresenter implements Search.ActionListener {
@@ -28,6 +28,8 @@ public class SearchPresenter implements Search.ActionListener {
     private final Context mContext;
     private final Search.View mView;
     private String mCurrentQuery;
+
+    private TextView textView6;
 
     private SearchPager mSearchPager;
     private SearchPager.CompleteListener mSearchListener;
@@ -53,13 +55,12 @@ public class SearchPresenter implements Search.ActionListener {
 
     @Override
     public void init(String accessToken) {
-        logMessage("Api Client created");
         SpotifyApi spotifyApi = new SpotifyApi();
 
         if (accessToken != null) {
             spotifyApi.setAccessToken(accessToken);
         } else {
-            logError("No valid access token");
+            logError("No valid access token. Try restarting the application.");
         }
 
         mSearchPager = new SearchPager(spotifyApi.getService());
@@ -71,7 +72,7 @@ public class SearchPresenter implements Search.ActionListener {
     @Override
     public void search(@Nullable String searchQuery) {
         if (searchQuery != null && !searchQuery.isEmpty() && !searchQuery.equals(mCurrentQuery)) {
-            logMessage("query text submit " + searchQuery);
+            Log.d(TAG, "Submitted query: "+searchQuery);
             mCurrentQuery = searchQuery;
             mView.reset();
             mSearchListener = new SearchPager.CompleteListener() {
@@ -131,10 +132,13 @@ public class SearchPresenter implements Search.ActionListener {
 
         if (currentTrackUrl == null || !currentTrackUrl.equals(previewUrl)) {
             mPlayer.play(previewUrl);
+            //TODO: CHANGE TO PLAY ICON IN MAIN
         } else if (mPlayer.isPlaying()) {
             mPlayer.pause();
+            //TODO: CHANGE TO PAUSE ICON IN MAIN
         } else {
             mPlayer.resume();
+            //TODO: CHANGE TO PLAY ICON IN MAIN
         }
     }
 

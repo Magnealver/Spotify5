@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:baselineAligned="false"
     android:orientation="vertical"
     android:weightSum="0.5">
@@ -14,40 +14,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/HomeHeader"
+            android:id="@+id/BrowseHeader"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/spotifyGray"
             android:gravity="center_vertical|center_horizontal"
-            android:text="My Library"
+            android:text="Browse"
             android:textColor="@color/white" />
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_centerVertical="true"
-            android:layout_alignTop="@+id/imageButton2"
-            android:background="@android:color/transparent"
-            android:gravity="left|center_vertical"
-            app:srcCompat="@drawable/me" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:adjustViewBounds="false"
-            android:background="@android:color/transparent"
-            android:cropToPadding="false"
-            android:gravity="right|center_vertical"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/settings"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/imageView9"
-            android:layout_toEndOf="@+id/imageView9"
-            android:layout_marginLeft="258dp"
-            android:layout_marginStart="258dp" />
     </RelativeLayout>
 
     <View
@@ -56,8 +30,8 @@
         android:layout_weight="0.05" />
 
     <ScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,34 +43,35 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.1" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/featured_playlists"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Featured Playlists"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <!--<TextView
+                android:id="@+id/MadeForYou"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Get better reccomendations the more you listen"
+                android:textColor="@android:color/darker_gray" />-->
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_centerVertical="true"
-                    android:baselineAlignBottom="@+id/button5"
-                    android:cropToPadding="false"
-                    android:gravity="left|center_vertical"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/dailymix" />
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
-                <Button
-                    android:id="@+id/Kappa"
+                <LinearLayout
+                    android:id="@+id/featured_content"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:gravity="left|center_vertical"
-                    android:onClick="underConstruction"
-                    android:paddingLeft="5dp"
-                    android:text="My Daily Mix"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+                    android:orientation="horizontal">
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <View
                 android:layout_width="0dp"
@@ -115,7 +90,7 @@
                     android:layout_height="25dp"
                     android:adjustViewBounds="false"
                     android:cropToPadding="false"
-                    app:srcCompat="@drawable/playlists" />
+                    app:srcCompat="@drawable/newreleases" />
 
                 <Button
                     android:id="@+id/button6"
@@ -124,7 +99,36 @@
                     android:background="@android:color/transparent"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="5dp"
-                    android:text="My Playlists"
+                    android:text="New Releases"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="15dp"
+                android:layout_weight="0.05" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/discoverimage"
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:cropToPadding="false"
+                    app:srcCompat="@drawable/discover" />
+
+                <Button
+                    android:id="@+id/discoverbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="Discover"
                     android:textColor="@color/white" />
             </LinearLayout>
 
@@ -144,7 +148,7 @@
                     android:layout_width="50dp"
                     android:layout_height="25dp"
                     android:cropToPadding="false"
-                    app:srcCompat="@drawable/stations2" />
+                    app:srcCompat="@drawable/charts" />
 
                 <Button
                     android:id="@+id/Kappa2"
@@ -153,7 +157,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="5dp"
-                    android:text="My Stations"
+                    android:text="Charts"
                     android:textColor="@color/white" />
             </LinearLayout>
 
@@ -173,7 +177,7 @@
                     android:layout_width="50dp"
                     android:layout_height="25dp"
                     android:cropToPadding="false"
-                    app:srcCompat="@drawable/artists" />
+                    app:srcCompat="@drawable/moods3" />
 
                 <Button
                     android:id="@+id/Kappa3"
@@ -182,7 +186,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="5dp"
-                    android:text="My Artists"
+                    android:text="Genres &amp; Moods"
                     android:textColor="@color/white" />
             </LinearLayout>
 
@@ -202,7 +206,7 @@
                     android:layout_width="50dp"
                     android:layout_height="25dp"
                     android:cropToPadding="false"
-                    app:srcCompat="@drawable/songs" />
+                    app:srcCompat="@drawable/concerts" />
 
                 <Button
                     android:id="@+id/Kappa5"
@@ -211,7 +215,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="5dp"
-                    android:text="My Songs"
+                    android:text="Concerts"
                     android:textColor="@color/white" />
             </LinearLayout>
 
@@ -220,57 +224,6 @@
                 android:layout_height="15dp"
                 android:layout_weight="0.05" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:cropToPadding="false"
-                    app:srcCompat="@drawable/podcasts" />
-
-                <Button
-                    android:id="@+id/Kappa6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:gravity="left|center_vertical"
-                    android:paddingLeft="5dp"
-                    android:text="My Podcasts &amp; Videos"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="0.05" />
-
-            <LinearLayout
-                android:id="@+id/RecentlyPlayed"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Recently Played"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="0.05" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
-

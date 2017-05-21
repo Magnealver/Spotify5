@@ -18,6 +18,8 @@ public class PreviewPlayer implements Player, MediaPlayer.OnCompletionListener {
     private MediaPlayer mMediaPlayer;
     private String mCurrentTrack;
 
+    //MainActivity mainActivity = new MainActivity();
+
     private class OnPreparedListener implements MediaPlayer.OnPreparedListener {
 
         private final String mUrl;

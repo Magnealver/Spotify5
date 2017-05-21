@@ -11,13 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-
-
-/**
- * Created by Alexanders on 2017-05-14.
- */
-
 public class RadioFragment extends Fragment {
 
     @Nullable

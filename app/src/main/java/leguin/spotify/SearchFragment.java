@@ -1,9 +1,5 @@
 package leguin.spotify;
 
-/**
- * Created by Alexanders on 2017-05-14.
- */
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.List;
 
-import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.Track;
 
 public class SearchFragment extends Fragment implements Search.View {
@@ -32,13 +28,10 @@ public class SearchFragment extends Fragment implements Search.View {
                              @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.search,container,false);
 
-        Intent intent = getActivity().getIntent();
-        String token = intent.getStringExtra(EXTRA_TOKEN);
-
         accessToken = CredentialsHandler.getToken(view.getContext());
 
         mActionListener = new SearchPresenter(getActivity(), this);
-        mActionListener.init(token);
+        mActionListener.init(CredentialsHandler.getToken(getContext()));
 
         // Setup search field
         final SearchView searchView = (SearchView) view.findViewById(R.id.search_view);
@@ -71,7 +64,7 @@ public class SearchFragment extends Fragment implements Search.View {
         resultsList.setAdapter(mAdapter);
         resultsList.addOnScrollListener(mScrollListener);
 
-        // If Activity was recreated wit active search restore it
+        // If Activity was recreated with active search restore it
         if (savedInstanceState != null) {
             String currentQuery = savedInstanceState.getString(KEY_CURRENT_QUERY);
             mActionListener.search(currentQuery);
@@ -80,7 +73,6 @@ public class SearchFragment extends Fragment implements Search.View {
         return view;
     }
 
-    static final String EXTRA_TOKEN = "EXTRA_TOKEN";
     private static final String KEY_CURRENT_QUERY = "CURRENT_QUERY";
 
     private Search.ActionListener mActionListener;

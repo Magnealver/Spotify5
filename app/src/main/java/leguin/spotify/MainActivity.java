@@ -1,57 +1,55 @@
 package leguin.spotify;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
+import android.content.ServiceConnection;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RadioGroup;
-import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 import com.spotify.sdk.android.player.ConnectionStateCallback;
 import com.spotify.sdk.android.player.Error;
-import com.spotify.sdk.android.player.Player;
 import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
-import java.util.List;
-
-import kaaes.spotify.webapi.android.SpotifyApi;
-import kaaes.spotify.webapi.android.SpotifyCallback;
-import kaaes.spotify.webapi.android.SpotifyError;
-import kaaes.spotify.webapi.android.SpotifyService;
-import kaaes.spotify.webapi.android.models.Track;
-import kaaes.spotify.webapi.android.models.UserPrivate;
-import retrofit.client.Response;
-
 public class MainActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
-    private static final String TAG = MainActivity.class.getSimpleName();
-
-    // Request code that will be used to verify if the result comes from correct activity
-    // Can be any integer
-    private static final int REQUEST_CODE = 1337;
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-
-    private Player mPlayer;
 
     BottomBar mBottomBar;
     ImageButton playpause;
-    boolean isPlaying = false;
+    TextView song;
+
+    private final Context mContext = this;
+    private leguin.spotify.Player mPlayer;
 
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
+
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mPlayer = ((PlayerService.PlayerBinder) service).getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mPlayer = null;
+        }
+    };
 
     @Override
     public boolean onTouchEvent(MotionEvent event)
@@ -70,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements
                     // Left to Right swipe action
                     if (x2 > x1)
                     {
-                        Toast.makeText(this, "Left to Right swipe [Previous]", Toast.LENGTH_SHORT).show ();
                        // TODO: Create Previous Song method
                        // PreviousSong();
                     }
@@ -78,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements
                     // Right to left swipe action
                     else
                     {
-                        Toast.makeText(this, "Right to Left swipe [Next]", Toast.LENGTH_SHORT).show ();
                         // TODO: Create Next Song method
                         // NextSong();
                     }
@@ -101,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements
 
         playpause= (ImageButton)findViewById(R.id.button12);
         playpause.setOnClickListener(imgButtonHandler);
+        song = (TextView) findViewById(R.id.textView6);
+        song.setText("Not playing any track currently");
+
+        mContext.bindService(PlayerService.getIntent(mContext), mServiceConnection, Activity.BIND_AUTO_CREATE);
 
         mBottomBar = BottomBar.attach(this,savedInstanceState);
         mBottomBar.setItemsFromMenu(R.menu.menu_main, new OnMenuTabClickListener() {
@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements
                     public void onMenuTabSelected(@IdRes int menuItemId) {
                         if (menuItemId == R.id.item_home){
                             HomeFragment f = new HomeFragment();
+                            Drawable mDrawable = getApplicationContext().getResources().getDrawable(R.drawable.ic_home_black_24dp);
+                            mDrawable.setColorFilter(1947988, PorterDuff.Mode.MULTIPLY);
                             getSupportFragmentManager().beginTransaction().replace(R.id.frame,f).commit();
                         }
                         if (menuItemId == R.id.item_browse){
@@ -144,16 +146,26 @@ public class MainActivity extends AppCompatActivity implements
     View.OnClickListener imgButtonHandler = new View.OnClickListener() {
 
         public void onClick(View v) {
-            if (isPlaying) {
-                playpause.setImageResource(R.drawable.pause);
-                //TODO: Pause current song
+            if (mPlayer.isPlaying()) {
+                pauseIcon();
+                mPlayer.pause();
+                song.setText("Not playing any track currently");
             } else {
-                playpause.setImageResource(R.drawable.play);
-                //TODO: Play current song
+                playIcon();
+                mPlayer.resume();
+                song.setText("Playing track");
             }
-            isPlaying = !isPlaying;
+
         }
     };
+
+    public void pauseIcon() {
+        playpause.setImageResource(R.drawable.play);
+    }
+
+    public void playIcon() {
+        playpause.setImageResource(R.drawable.pause);
+    }
 
     @Override
     protected void onDestroy() {
@@ -205,28 +217,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onConnectionMessage(String message) {
         Log.d("MainActivity", "Received connection message: " + message);
-    }
-
-    public void apiTest2(View view) {
-        SpotifyService test;
-        SpotifyApi test2 = new SpotifyApi();
-
-        test2.setAccessToken(CredentialsHandler.getToken(this));
-
-        test = test2.getService();
-
-        test.getMe(new SpotifyCallback<UserPrivate>() {
-            @Override
-            public void failure(SpotifyError spotifyError) {
-                Log.d(TAG, "Feelsbadman");
-            }
-
-            @Override
-            public void success(UserPrivate userPrivate, Response response) {
-                Log.d(TAG, "Feelsgoodman");
-                Log.d(TAG, userPrivate.id);
-            }
-        });
     }
 }
 

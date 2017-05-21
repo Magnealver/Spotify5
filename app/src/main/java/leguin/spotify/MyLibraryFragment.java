@@ -20,7 +20,6 @@ public class MyLibraryFragment extends Fragment {
     private Button Kappa;//TODO: change name, Kappa
     private Button Kappa2;
     private Button Kappa3;
-    private Button Kappa4;
     private Button Kappa5;
     private Button Kappa6;
     private Button MyPlaylists;

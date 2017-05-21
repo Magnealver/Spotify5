@@ -6,7 +6,6 @@ package leguin.spotify;
 
 import java.util.List;
 
-import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.Track;
 
 public class Search {
